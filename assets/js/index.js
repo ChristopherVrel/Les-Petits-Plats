@@ -49,6 +49,7 @@ function displayDropdownNav(color) {
     // displaying dropdowns
     dropdows.forEach(d => {
         const dropdown = dropdownModel.displayDropdown(d);
+        
         d["parent"] = dropdown.querySelector(".dropdown-options ul");
 
         dropdownsNav.appendChild(dropdown);
@@ -60,7 +61,6 @@ function displayDropdownNav(color) {
 
 // initialize function
 (() => {
-    console.log("init");
     const header = document.querySelector("header");
     const color = { blue: "#3282f7",  green: "#68d9a4",  red: "#ed6454" }
 

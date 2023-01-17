@@ -44,8 +44,6 @@ function displayDropdowns(dropdownsNav, tagsContainer, tags, recipes, dropdows) 
             
             button.addEventListener("click", () => removeThisButton(e));
         }
-
-        console.log(tags);
     }
 
     function hideAndShowSortedTags(filteredRecipes) {
@@ -126,7 +124,6 @@ function displayDropdowns(dropdownsNav, tagsContainer, tags, recipes, dropdows) 
     }
 
     function displayDropdown({ name, type, data, color }) {
-        console.log(name);
         const dropdownContainer = createEl(["dropdown-container"]);
         const activeDropdown = createEl(["dropdown-active"], {"background-color": color});
         const activeDropdownEl = createEl(undefined, undefined, name);

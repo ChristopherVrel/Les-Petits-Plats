@@ -28,13 +28,9 @@ function searchBar(dropModel) {
             }
 
             hideAndShowSortedCards(result);
-
-            console.log(result);
         }
         else {
             hideAndShowSortedCards(dropModel.getFilteredRecipes());
-
-            console.log(dropModel.getFilteredRecipes());
         }
     }
 

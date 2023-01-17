@@ -1,7 +1,3 @@
-function getAllIngredients(data) {
-    console.log("displaying dropdown");
-}
-
 function createEl(classes = [], style = {}, innerText = null, type = "div", attributes = {}) {
     const div = document.createElement(type);
 
@@ -88,7 +84,6 @@ function hideAndShowSortedCards(result) {
     });
 
     if (toShow.length <= 0) {
-        console.log("show error message");
         errorMsg.style.display = "block";
         errorMsg.innerText = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.";
     }
