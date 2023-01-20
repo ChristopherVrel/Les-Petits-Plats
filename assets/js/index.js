@@ -49,6 +49,7 @@ function displayDropdownNav(color) {
     // displaying dropdowns
     dropdows.forEach(d => {
         const dropdown = dropdownModel.displayDropdown(d);
+        
         d["parent"] = dropdown.querySelector(".dropdown-options ul");
 
         dropdownsNav.appendChild(dropdown);

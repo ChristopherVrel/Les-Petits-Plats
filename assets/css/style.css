@@ -14,6 +14,10 @@ body {
     overflow-x: hidden;
 }
 
+header {
+    padding: 0 1.5rem;
+}
+
 header nav {
     user-select: none;
 }
@@ -50,6 +54,7 @@ header #filterBar i {
 
 #main {
     row-gap: 1.5rem;
+    padding: 1.5rem;
 }
 
 /* ----- DROPDOWN ----- */
@@ -260,4 +265,13 @@ header #filterBar i {
     height: 2rem !important;
     color: var(--white-color);
     padding: 0 1rem !important;
+}
+
+@media screen and (min-width: 1400px) {
+    header {
+        padding: 0 15rem;
+    }
+    #main {
+        padding: 1.5rem 15rem;
+    }
 }
