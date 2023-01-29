@@ -1,7 +1,7 @@
 import { getAllAppliances, getAllIngredients, getAllUstensils } from "../index.js";
 import { createButton, createEl, createInput, hideAndShowSortedCards, strFirstUpp } from "./utils.js";
 
-function displayDropdowns(dropdownsNav, tagsContainer, tags, recipes, dropdows) {
+function displayDropdowns(dropdownsNav, tagsContainer, tags, recipes, dropdows, getRecipes) {
     let filteredRecipes = recipes;
     const maxOptions = 30;
 
@@ -24,24 +24,24 @@ function displayDropdowns(dropdownsNav, tagsContainer, tags, recipes, dropdows) 
 
                         button.remove();
 
-                        filteredRecipes = filterRecipedFromTags(recipes, tags);
-
-                        hideAndShowSortedTags(filteredRecipes);
-                        hideAndShowSortedCards(filteredRecipes);
+                        filteredRecipes = filterRecipedFromTags(getRecipes(), tags);
 
                         e.target.style.display = "inline-flex";
                         e.target.classList.remove("tag-active");
+
+                        hideAndShowSortedTags(filteredRecipes);
+                        hideAndShowSortedCards(filteredRecipes);
                     }
                 });
             }
 
             e.target.classList.add("tag-active");
 
-            filteredRecipes = filterRecipedFromTags(recipes, tags);
+            filteredRecipes = filterRecipedFromTags(getRecipes(), tags);
 
             hideAndShowSortedTags(filteredRecipes);
             hideAndShowSortedCards(filteredRecipes);
-            
+
             button.addEventListener("click", () => removeThisButton(e));
         }
     }
@@ -51,7 +51,7 @@ function displayDropdowns(dropdownsNav, tagsContainer, tags, recipes, dropdows) 
             const allTagsElement = dropdow.parent.querySelectorAll("li");
             
             if (dropdow.type === "appliance") {
-                const appliances = getAllAppliances(filteredRecipes);
+                const appliances = (filteredRecipes.length > 0) ? getAllAppliances(filteredRecipes) : [];
 
                 tagsLoop(allTagsElement, appliances);
 
@@ -59,7 +59,7 @@ function displayDropdowns(dropdownsNav, tagsContainer, tags, recipes, dropdows) 
             }
 
             if (dropdow.type === "ingredients") {
-                const ingredients = getAllIngredients(filteredRecipes);
+                const ingredients = (filteredRecipes.length > 0) ? getAllIngredients(filteredRecipes) : [];
 
                 tagsLoop(allTagsElement, ingredients);
 
@@ -67,7 +67,7 @@ function displayDropdowns(dropdownsNav, tagsContainer, tags, recipes, dropdows) 
             }
 
             if (dropdow.type === "ustensils") {
-                const ustensils = getAllUstensils(filteredRecipes);
+                const ustensils = (filteredRecipes.length > 0) ? getAllUstensils(filteredRecipes) : [];
 
                 tagsLoop(allTagsElement, ustensils);
 
@@ -101,9 +101,13 @@ function displayDropdowns(dropdownsNav, tagsContainer, tags, recipes, dropdows) 
         }
     }
 
-    function getFilteredRecipes() {
-        return filteredRecipes;
-    }
+    // function getFilteredRecipes() {
+    //     return filteredRecipes;
+    // }
+
+    // function setFilteredRecipes(re) {
+    //     filteredRecipes = re;
+    // }
 
     function filterRecipedFromTags(recipes, tags) {
         let filteredRecipes = recipes;
@@ -137,7 +141,10 @@ function displayDropdowns(dropdownsNav, tagsContainer, tags, recipes, dropdows) 
         const tags = data.map((el, i) => {
             const option = createEl(["dropdown-option"], undefined, strFirstUpp(el), "li");
             
-            option.addEventListener("click", (e) => addTag(e, type, data, color));
+            option.addEventListener("click", (e) => {
+                addTag(e, type, data, color);
+                activeDropdownSearch.value = "";
+            });
 
             (i >= maxOptions) ? option.style.display = "none" : "";
             
@@ -257,8 +264,8 @@ function displayDropdowns(dropdownsNav, tagsContainer, tags, recipes, dropdows) 
 
         return dropdownContainer;
     }
-
-    return { displayDropdown, tags, getFilteredRecipes };
+    // getFilteredRecipes, setFilteredRecipes,
+    return { displayDropdown, tags, filterRecipedFromTags, hideAndShowSortedTags };
 }
 
 export { displayDropdowns };
