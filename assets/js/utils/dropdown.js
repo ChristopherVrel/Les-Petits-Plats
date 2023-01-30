@@ -101,14 +101,6 @@ function displayDropdowns(dropdownsNav, tagsContainer, tags, recipes, dropdows, 
         }
     }
 
-    // function getFilteredRecipes() {
-    //     return filteredRecipes;
-    // }
-
-    // function setFilteredRecipes(re) {
-    //     filteredRecipes = re;
-    // }
-
     function filterRecipedFromTags(recipes, tags) {
         let filteredRecipes = recipes;
         
@@ -264,7 +256,7 @@ function displayDropdowns(dropdownsNav, tagsContainer, tags, recipes, dropdows, 
 
         return dropdownContainer;
     }
-    // getFilteredRecipes, setFilteredRecipes,
+
     return { displayDropdown, tags, filterRecipedFromTags, hideAndShowSortedTags };
 }
 
